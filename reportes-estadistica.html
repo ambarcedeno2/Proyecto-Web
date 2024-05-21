@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Metadatos -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reportes y Estadistica</title>
+    <!-- Estilos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="Css/estilo.css">
+</head>
+<body>
+    <!-- Barra lateral -->
+    <div class="sidebar">
+        <!-- Contenedor del logo -->
+        <div class="logo-container">
+            <!-- Enlace al dashboard -->
+            <a href="dashboard.html">
+              <img src="img/logo.png" alt="Logo" class="logo">
+            </a>
+            <!-- Título -->
+            <h2>Admin</h2>
+            <!-- Navegación -->
+            <nav>
+            <ul>
+            <li><a href="#" id="gestionEquipos"><i class="fas fa-tasks"></i> Gestión de Equipos</a></li>
+            <li><a href="#" id="reportesEstadistica"><i class="fas fa-chart-bar"></i> Reportes y Estadística</a></li>
+            <li><a href="#" id="configuracionPerfil"><i class="fas fa-user-cog"></i> Configuración de Perfil</a></li>
+            <li><a href="#" id="reservaEquipos"><i class="fas fa-calendar-alt"></i> Reserva de Laboratorios</a></li>
+            <li><a href="#" id="notificacionesAlertas"><i class="fas fa-bell"></i> Notificaciones y Alertas</a></li>
+            <li><a href="#" id="salir"><i class="fas fa-sign-out-alt"></i> Salir</a></li>
+            </ul>
+            </nav>
+          </div>
+    </div>
+
+    <!-- Contenido principal -->
+    <div class="main-content">
+        <!-- Menú de widgets -->
+        <div class="widget-menu">
+            <!-- Widget de Equipos totales -->
+            <div class="widget">
+                <h3>Equipos totales</h3>
+                <p>Total: 100</p>
+                <!-- Gráfico de barras -->
+                <div class="bar-chart">
+                    <div class="bar" style="width: 100%;"></div>
+                </div>
+            </div>
+            <!-- Widget de Equipos en mantenimiento -->
+            <div class="widget">
+                <h3>Equipos en mantenimiento</h3>
+                <p>Total: 20</p>
+                <!-- Gráfico de barras -->
+                <div class="bar-chart">
+                    <div class="bar" style="width: 20%;"></div>
+                </div>
+            </div>
+            <!-- Widget de Índice de uso -->
+            <div class="widget">
+                <h3>Índice de uso</h3>
+                <p>% de crecimiento: 40%</p>
+                <!-- Gráfico de barras -->
+                <div class="bar-chart">
+                    <div class="bar" style="width: 40%;"></div>
+                </div>
+            </div>
+            <!-- Widget de Índice varios -->
+            <div class="widget">
+                <h3>Indice varios</h3>
+                <p>% de crecimiento: 30%</p>
+                <!-- Gráfico de barras -->
+                <div class="bar-chart">
+                    <div class="bar" style="width: 30%;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+<!-- Script JavaScript -->
+<script src="Js/script.js"></script>
+</html>

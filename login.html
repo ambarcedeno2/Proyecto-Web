@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <!-- Metadatos -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Iniciar Sesión - Software de Gestión de Laboratorios</title>
+  <!-- Estilos -->
+  <link rel="stylesheet" href="Css/stylesformularios.css">
+  <!-- Enlace a la librería de íconos Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+  <div class="container">
+    <!-- Botón de retroceso con ícono de flecha -->
+    <a href="index.html" class="back-button"><i class="fas fa-arrow-left"></i></a>
+    <!-- Título -->
+    <h2>Iniciar Sesión</h2>
+    <!-- Formulario de inicio de sesión -->
+    <form id="loginForm" action="" method="POST">
+      <!-- Campo para el correo electrónico o usuario -->
+      <div class="form-group">
+        <label for="emailUsuario">Correo Electrónico / Usuario:</label>
+        <input type="text" id="emailUsuario" name="emailUsuario" required>
+      </div>
+      <!-- Campo para la contraseña -->
+      <div class="form-group">
+        <label for="password">Contraseña:</label>
+        <input type="password" id="password" name="password" required>
+      </div>
+      <!-- Botón para enviar el formulario -->
+      <button type="submit">Iniciar Sesión</button>
+    </form>
+    <!-- Enlace para recuperar contraseña -->
+    <div class="forgot-password">
+      <a href="register.html">¿Eres nuevo? ¡Regístrate!</a>
+    </div>
+  </div>
+  <!-- Script JavaScript -->
+  <script src="Js/generalformularios.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      // Obtener el formulario de inicio de sesión
+      const loginForm = document.getElementById("loginForm");
+
+      // Agregar un evento de envío al formulario
+      loginForm.addEventListener("submit", function(event) {
+        event.preventDefault(); // Evitar el envío real del formulario
+        window.location.href = "dashboard.html"; // Redirigir a dashboard.html
+      }); 
+
+      // Obtener el botón de retroceso
+      const backButton = document.querySelector('.back-button');
+
+      // Agregar un evento de clic al botón de retroceso
+      backButton.addEventListener("click", function(event) {
+        event.preventDefault();
+        window.location.href = "index.html"; // Redirigir a index.html
+      });
+    });
+  </script>
+</body>
+</html>

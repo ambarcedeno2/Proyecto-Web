@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Metadatos -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Informacion de equipo</title>
+    <!-- Bibliotecas -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Estilos -->
+    <link rel="stylesheet" href="Css/estilo.css">
+</head>
+<body>
+    <!-- Barra lateral -->
+    <div class="sidebar">
+        <div class="logo-container">
+            <a href="dashboard.html">
+              <img src="img/logo.png" alt="Logo" class="logo">
+            </a>
+            <h2>Admin</h2>
+        <nav>
+          <ul>
+            <!-- Enlaces de navegación -->
+            <li><a href="#" id="gestionEquipos"><i class="fas fa-tasks"></i> Gestión de Equipos</a></li>
+            <li><a href="#" id="reportesEstadistica"><i class="fas fa-chart-bar"></i> Reportes y Estadística</a></li>
+            <li><a href="#" id="configuracionPerfil"><i class="fas fa-user-cog"></i> Configuración de Perfil</a></li>
+            <li><a href="#" id="reservaEquipos"><i class="fas fa-calendar-alt"></i> Reserva de Laboratorios</a></li>
+            <li><a href="#" id="notificacionesAlertas"><i class="fas fa-bell"></i> Notificaciones y Alertas</a></li>
+            <li><a href="#" id="salir"><i class="fas fa-sign-out-alt"></i> Salir</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+
+    <!-- Contenido principal -->
+    <div class="main-content">
+        <div class="pc-details">
+            <!-- Detalles del equipo -->
+            <img src="img/pc.png" alt="PC 1" class="pc-image">
+            <h2>Equipo {}</h2>
+            <p>Descripción detallada del equipo 1.</p>
+            <p>Estado: Disponible</p>
+            <p>Especificación técnica: [Especificación técnica clave]</p>
+            <p>Último mantenimiento: [Fecha del último mantenimiento]</p>
+            <p>Fecha de adquisición: [Fecha de adquisición]</p>
+            <!-- Botones -->
+            <div class="button-container">
+                <button id="darBaja">Dar de Baja</button>
+                <button id="mantenimiento">Enviar a Mantenimiento</button>
+            </div>
+        </div>  
+    </div>
+</body>
+
+<!-- Script -->
+<script src="Js/script.js"></script>
+<script>
+    // Función para mostrar una alerta de confirmación antes de dar de baja un equipo
+    document.addEventListener("DOMContentLoaded", function() {
+        var darBajaButton = document.getElementById("darBaja");
+
+        darBajaButton.addEventListener("click", function() {
+            Swal.fire({
+                title: '¿Estás seguro?',
+                text: "Esta acción es irremediable, ¿deseas dar de baja este equipo?",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Sí, dar de baja',
+                cancelButtonText: 'Cancelar'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire({
+                        title: 'Equipo dado de baja!',
+                        text: 'El equipo fue dado de baja',
+                        icon: 'success',
+                        timer: 5000,
+                        timerProgressBar: true,
+                        allowOutsideClick: false,
+                        showConfirmButton: false
+                    }).then((result) => {
+                        window.location.href = "gestion-equipos.html";
+                    });
+                }
+            });
+        });
+    });
+
+    // Función para programar mantenimiento y mostrar una alerta con la fecha seleccionada
+    document.addEventListener("DOMContentLoaded", function() {
+        var mantenimientoButton = document.getElementById("mantenimiento");
+
+        mantenimientoButton.addEventListener("click", function() {
+            Swal.fire({
+                title: 'Programar Mantenimiento',
+                html:
+                    '<input type="date" id="fechaMantenimiento" class="swal2-input">',
+                showCancelButton: true,
+                confirmButtonText: 'Aceptar',
+                cancelButtonText: 'Cancelar',
+                preConfirm: () => {
+                    const fechaMantenimiento = Swal.getPopup().querySelector('#fechaMantenimiento').value;
+                    if (!fechaMantenimiento) {
+                        Swal.showValidationMessage(`Por favor ingresa una fecha`);
+                    }
+                    return { fechaMantenimiento: fechaMantenimiento }
+                }
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire({
+                        title: 'Mantenimiento Programado!',
+                        text: `Se programó correctamente el mantenimiento para el ${result.value.fechaMantenimiento}`,
+                        icon: 'success'
+                    });
+                }
+            });
+        });
+    });
+</script>
+</html>

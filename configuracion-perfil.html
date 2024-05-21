@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Metadatos -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Configuración de perfil</title>
+    <!-- Estilos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="Css/estilo.css">
+    <!-- Script para alertas -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+    <!-- Barra lateral -->
+    <div class="sidebar">
+        <div class="logo-container">
+            <a href="dashboard.html">
+              <img src="img/logo.png" alt="Logo" class="logo">
+            </a>
+            <h2>Admin</h2>
+        <nav>
+          <ul>
+            <!-- Enlaces de navegación -->
+            <li><a href="#" id="gestionEquipos"><i class="fas fa-tasks"></i> Gestión de Equipos</a></li>
+            <li><a href="#" id="reportesEstadistica"><i class="fas fa-chart-bar"></i> Reportes y Estadística</a></li>
+            <li><a href="#" id="configuracionPerfil"><i class="fas fa-user-cog"></i> Configuración de Perfil</a></li>
+            <li><a href="#" id="reservaEquipos"><i class="fas fa-calendar-alt"></i> Reserva de Laboratorios</a></li>
+            <li><a href="#" id="notificacionesAlertas"><i class="fas fa-bell"></i> Notificaciones y Alertas</a></li>
+            <li><a href="#" id="salir"><i class="fas fa-sign-out-alt"></i> Salir</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+
+    <!-- Contenido principal -->
+    <div class="main-content">
+      <div class="profile-section">
+          <h2>Configuración de Perfil</h2>
+          <div class="profile-form">
+              <div class="profile-image">
+                  <img src="img/perfil.png" alt="Profile Picture">
+                  <input type="file" id="profile-picture" accept="image/*">
+                  <label for="profile-picture"><i class="fas fa-camera"></i> Cambiar Foto</label>
+              </div>
+              <div class="profile-info">
+                  <!-- Campos del formulario -->
+                  <div class="profile-field">
+                      <label for="email">Correo Electrónico:</label>
+                      <input type="email" id="email" placeholder="correo@example.com">
+                  </div>
+                  <div class="profile-field">
+                      <label for="password">Contraseña:</label>
+                      <input type="password" id="password">
+                  </div>
+                  <div class="profile-field">
+                      <label for="about">Sobre Mí:</label>
+                      <textarea id="about" rows="4" placeholder="Escribe algo sobre ti..."></textarea>
+                  </div>                  
+              </div>
+          </div>
+          <!-- Botón para guardar cambios -->
+          <button class="save-button">Guardar Cambios</button>
+      </div>
+  </div>    
+</body>
+
+<!-- Script para validar y procesar el formulario -->
+<script src="Js/script.js"></script>
+<script>
+  document.querySelector('.save-button').addEventListener('click', function(event) {
+      event.preventDefault();
+      
+      // Obtener valores de los campos
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+      const about = document.getElementById('about').value;
+
+      // Expresiones regulares para validación
+      const emailRegex = /^[a-zA-Z0-9._%+-]+@live\.uleam\.edu\.ec$/;
+      const passwordRegex = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{10,}$/;
+
+      // Validar correo electrónico
+      if (!emailRegex.test(email)) {
+          Swal.fire({
+              icon: 'error',
+              title: 'Error',
+              text: 'El correo debe ser @live.uleam.edu.ec'
+          });
+          return;
+      }
+
+      // Validar contraseña
+      if (!passwordRegex.test(password)) {
+          Swal.fire({
+              icon: 'error',
+              title: 'Error',
+              text: 'La contraseña debe tener al menos 10 caracteres, incluyendo letras, números y caracteres especiales.'
+          });
+          return;
+      }
+
+      // Validar campo "Sobre Mí"
+      if (!about.trim()) {
+          Swal.fire({
+              icon: 'error',
+              title: 'Error',
+              text: 'El campo "Sobre Mí" no puede estar vacío.'
+          });
+          return;
+      }
+
+      // Si todas las validaciones pasan, mostrar mensaje de éxito
+      Swal.fire({
+          icon: 'success',
+          title: 'Éxito',
+          text: 'Los cambios se han guardado correctamente.'
+    });
+});
+</script>
+</html>
